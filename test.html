@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet"> 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.js" integrity="sha512-HNbo1d4BaJjXh+/e6q4enTyezg5wiXvY3p/9Vzb20NIvkJghZxhzaXeffbdJuuZSxFhJP87ORPadwmU9aN3wSA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <style type='text/css' lang='css'>
       body {
         background: #cacfdb;
@@ -232,6 +234,7 @@
     </style>
     
     <script type='text/javascript' deffered>
+    $(function() {
       var str, start, progress, deg = 0, degY = 0;
       var mouseupX, mouseupTime;
       var cubePressed = false;
@@ -266,6 +269,7 @@
         cycleY = (maxCycle - mouseupY*multiplier) / 20;
         if (cycleY<30) cycleY=30;
       });
+    });
     </script>
   </head>
   <body>
