@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>this is a test</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet"> 
+
+    <style type='text/css' lang='css'>
+      body {
+        background: #cacfdb;
+        font-family: 'Rubik', sans-serif;
+      }
+
+
+      .container {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        perspective: 3000px;  
+        margin: auto;
+        margin-top: calc(50vh - 100px);
+        margin-bottom: 300px;
+      }
+
+      #cube {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+      }
+
+      #cube figure {
+        margin: 0;
+        width: 196px;
+        height: 196px;
+        display: block;
+        position: absolute;
+        text-align: center;
+        border: 2px solid black;
+      }
+
+      #cube figure span {
+        position: absolute;
+        top: 50%;
+        font-size: 32px;
+        font-weight: 800;
+        transform: translate(-50%, -50%);
+      }
+
+      .rot {
+        transform: rotate3d(0,1,2,0deg);
+      }
+
+      .front {
+        transform: rotateY(0deg) translateZ(100px);
+        background-color: #2861bd;
+        opacity: 0.5;
+          animation: flicker 2s ease alternate infinite;
+      }
+      .back {
+        transform: rotateX(180deg) translateZ(100px);
+        background-color: #dedb18;
+        opacity: 0.5;
+          animation: flicker 1s ease-in-out alternate infinite;
+      }
+      .left {
+        transform: rotateY(-90deg) translateZ(100px);
+        background-color: #cca723;
+        opacity: 0.5;
+          animation: flicker 5s linear alternate infinite;
+      }
+      .right {
+        transform: rotateY(90deg) translateZ(100px);
+        background-color: #45abe6;
+        opacity: 0.5;
+          animation: flicker 5s reverse cubic-bezier(0.1, -0.6, 0.2, 0) alternate infinite;
+      }
+      .up {
+        transform: rotateX(90deg) translateZ(100px);
+        background-color: #526a9e;
+        opacity: 0.5;
+          animation: flicker 6s ease alternate infinite;
+      }
+      .down {
+        transform: rotateX(-90deg) translateZ(100px);
+        background-color: ocean;
+        opacity: 0.5;
+      }
+
+      .box {
+        width: 150px;
+        height: 75px;
+        background-color: blue;
+        animation-name: buttonsmaller;
+        animation-duration: 0.3s;  
+      }
+      .box p {
+        color: white;
+        text-align: center;
+        font-size: 30px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .box:hover {
+        background-color: lightblue;
+        width: 180px;
+        height: 90px;
+        animation-name: buttonbigger;
+        animation-duration: 0.3s;
+        animation-timing-function: ease-out;
+        transform: rotate(370deg);
+      }
+      @keyframes buttonbigger {
+        0% {
+          background-color: blue; 
+          width: 150px; 
+          height: 75px; 
+          transform: rotate(0deg);
+        }
+      }
+      @keyframes buttonsmaller {
+        0% {
+          background-color: lightblue; 
+          width: 180px; 
+          height: 90px;
+          transform: rotate(370deg);
+        }  
+      }
+      .hvr-sweep-to-bottom {
+        display: inline-block;
+        color: #2098D1;
+        background-color: navy;
+        vertical-align: middle;
+        text-align: center;
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px transparent;
+        position: relative;
+        transition-property: color;
+        transition-duration: 0.3s;
+        margin-bottom: 40px;
+      }
+      .hvr-sweep-to-bottom span {
+        position: absolute;
+        font-size: 20px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      @keyframes wavytext {
+        0% { transform: translate(-50%, -50%) rotate(65deg);}
+        25% { transform: translate(-50%, calc(-50% - 15px)) rotate(0deg);}
+        50% { transform: translate(-50%, -50%) rotate(-65deg);}
+        75% { transform: translate(-50%, calc(-50% + 15px)) rotate(-6deg);}
+        100% { transform: translate(-50%, -50%) rotate(65deg);}
+      }
+      .hvr-sweep-to-bottom span {
+        animation-name: wavytext;
+        animation-duration: 2.0s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      .hvr-sweep-to-bottom:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #2098D1;
+        transform: scaleY(0) scaleX(0);
+        transform-origin: 50% 50%;
+        transition-property: transform;
+        transition-duration: 0.1s;
+        transition-timing-function: ease-out;
+      }
+      .hvr-sweep-to-bottom:hover, .hvr-sweep-to-bottom:focus, .hvr-sweep-to-bottom:active {
+        color: navy;
+      }
+      .hvr-sweep-to-bottom:hover:before, .hvr-sweep-to-bottom:focus:before, .hvr-sweep-to-bottom:active:before {
+        transform: scaleY(1) scaleX(1);
+      }
+
+      .kek-rainbow { 
+        height: 100%;
+        width: 100%;
+        left:0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+        background-size: 1800% 1800%;
+
+        -webkit-animation: rainbow 18s ease infinite;
+        -z-animation: rainbow 18s ease infinite;
+        -o-animation: rainbow 18s ease infinite;
+          animation: rainbow 18s ease infinite;
+      }
+
+      @-webkit-keyframes rainbow {
+          0%{background-position:0% 82%}
+          50%{background-position:100% 19%}
+          100%{background-position:0% 82%}
+      }
+      @-moz-keyframes rainbow {
+          0%{background-position:0% 82%}
+          50%{background-position:100% 19%}
+          100%{background-position:0% 82%}
+      }
+      @-o-keyframes rainbow {
+          0%{background-position:0% 82%}
+          50%{background-position:100% 19%}
+          100%{background-position:0% 82%}
+      }
+      @keyframes rainbow { 
+          0%{background-position:0% 82%}
+          50%{background-position:100% 19%}
+          100%{background-position:0% 82%}
+      }
+      @keyframes flicker {
+        0% {
+          opacity: 0.85;
+        }
+        100% {
+          opacity: 0.35;
+        }
+      }
+    </style>
+    
+    <script type='text/javascript' deffered>
+      var str, start, progress, deg = 0, degY = 0;
+      var mouseupX, mouseupTime;
+      var cubePressed = false;
+      var windowWidth = $(window).width();
+      var maxCycle = 200000;
+      var multiplier = maxCycle / windowWidth;
+      var cycleX = 3000;
+      var cycleY = 3000;
+
+      function step(time) {
+        if (!start) start = time;
+        progress = (time - start) / cycleX * 360;
+        progressY = (time - start) / cycleY * 360;
+        deg = (deg + progress) % 360;
+        degY = (degY + progressY) / 45 ;
+        str = `rotate3d(${deg/200 + degY*2},2,${-2 + degY*3},${deg}deg)`;
+        $('.rot').css('transform', str);
+        start = time;
+        window.requestAnimationFrame(step);
+      }
+
+      window.requestAnimationFrame(step);
+
+      $(document).on('mousemove', function(event) {
+        mouseupX = event.pageX;
+        if (mouseupX <= 0) mouseupX = 1;
+        cycleX = (maxCycle - mouseupX*multiplier) / 20;
+        if (cycleX<30) cycleX=30;
+
+        mouseupY = event.pageY;
+        if (mouseupY <= 0) mouseupY = 1;
+        cycleY = (maxCycle - mouseupY*multiplier) / 20;
+        if (cycleY<30) cycleY=30;
+      });
+    </script>
+  </head>
+  <body>
+    
+<section class="container">
+  <div id="cube" class="rot">
+    <figure class="front"><span>AYY LMAO</span></figure>
+    <figure class="back"><span>IT'S THE PIXXELUM CUBE</span></figure>
+    <figure class="left hvr-sweep-to-bottom"><span>UwU</span></figure>
+    <figure class="left"><span>🥒🥒🥒🥒</span></figure>
+    <figure class="right"><span>Oreo so kawaii🥰</span></figure>
+    <figure class="up kek-rainbow"><span>KEK MEANS KEK IN KEKISTAN</span></figure>
+    <figure class="down"><span>🥚🥚🥚🥚🍆🍆🍆🍆</span></figure>
+  </div>
+</section>
+
+<div style="width: 150px; height: 100px; border-width: 2px;" class="hvr-sweep-to-bottom"><span>howdy there m'sir!<span></div>
+
+  </body>
+</html>
